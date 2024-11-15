@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-
+// Define a square, allow it to handle clicks
 function Square({ value , onSquareClick}) {
     return(
         <button className="square" onClick={onSquareClick}>
@@ -9,6 +9,7 @@ function Square({ value , onSquareClick}) {
     );
 }
 
+// Create the board with squares, determine who is next
 export default function Board() {
     const [xIsNext, setXIsNext] = useState(true);
     const [squares, setSquares] = useState(Array(9).fill(null));
@@ -27,6 +28,7 @@ export default function Board() {
         setXIsNext(!xIsNext);
     }
 
+    // Determine game status
     const winner = calculateWinner(squares);
     let status;
     if (winner) {
@@ -35,6 +37,7 @@ export default function Board() {
         status = "Next player: " + (xIsNext ? "X" : "O");
     }
 
+    // Create the board
     return (
         <>
             <div className="status">{status}</div>
@@ -57,6 +60,7 @@ export default function Board() {
     )
 }
 
+// Find out which player won
 function calculateWinner(squares) {
     const lines = [
         [0, 1, 2],
